@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar, Switch, Alert,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter } from '../navigation';
 import { initDatabase, setSetting, getSetting } from '../services/database';
 import { deleteProjectDir } from '../services/storage';
 import { BackIcon, TrashIcon } from '../components/Icons';

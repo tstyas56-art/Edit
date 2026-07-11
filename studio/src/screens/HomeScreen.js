@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput, StatusBar, Dimensions, Image, Alert,
 } from 'react-native';
-import { useRouter, useFocusEffect } from 'expo-router';
+import { useRouter, useFocusEffect } from '../navigation';
 import { initDatabase, getAllProjects, deleteProject } from '../services/database';
 import { deleteProjectDir } from '../services/storage';
 import {
