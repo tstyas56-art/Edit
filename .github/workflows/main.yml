@@ -20,17 +20,17 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
-          cd web
+          cd studio
           npm install
 
       - name: ⚙️ Expo prebuild (iOS)
         run: |
-          cd web
+          cd studio
           npx expo prebuild -p ios --non-interactive
 
       - name: 🏗️ Build iOS app (NO SIGNING)
         run: |
-          cd web/ios
+          cd studio/ios
           
           # 1. تعطيل التوقيع في ملف المشروع الرئيسي لـ Xcode
           sed -i '' 's/CODE_SIGNING_ALLOWED = YES/CODE_SIGNING_ALLOWED = NO/g' ZEUSNovels.xcodeproj/project.pbxproj
@@ -79,7 +79,7 @@ jobs:
 
       - name: 📦 Create unsigned IPA
         run: |
-          cd web/ios
+          cd studio/ios
           # البحث بعمق عن ملف .app في كل مجلد build_output
           APP_PATH=$(find build_output -name "*.app" -type d | head -n 1)
 
@@ -104,4 +104,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ios-unsigned-ipa
-          path: web/ios/*.ipa
+          path: studio/ios/*.ipa
