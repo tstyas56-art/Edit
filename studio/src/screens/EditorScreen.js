@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, TouchableOpacity, StatusBar, Dimensions, Modal, TextInput,
   ScrollView, KeyboardAvoidingView, Platform, Alert, Image,
 } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useRouter, useLocalSearchParams } from '../navigation';
 import {
   getPageById, getLayersByPageId, getDialoguesByProjectId, getProjectById,
   createLayer, updateLayer, updateDialogue, deleteLayer,

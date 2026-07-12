@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, StatusBar, Dimensions,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter } from '../navigation';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
 import { createProject, createPage, createDialogue } from '../services/database';

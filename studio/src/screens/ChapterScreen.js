@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TouchableOpacity, StatusBar, Dimensions,
 } from 'react-native';
-import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
+import { useRouter, useLocalSearchParams, useFocusEffect } from '../navigation';
 import {
   getProjectById, getPagesByProjectId, getDialoguesByProjectId, initDatabase,
 } from '../services/database';

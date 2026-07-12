@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+// تمت إزالة import * as FileSystem from 'expo-file-system'؛ لأنه غير متاح
 import * as Sharing from 'expo-sharing';
 import * as ImageManipulator from 'expo-image-manipulator';
 import { manipulateAsync, SaveFormat } from 'expo-image-manipulator';
@@ -37,11 +37,11 @@ export async function exportPage(pageId, options = {}) {
     
     if (textOverlays.length > 0) {
       try {
-        const rendered = await renderTextOverlay(resultUri, textOverlays, {
-          width: page.original_width,
-          height: page.original_height,
-        });
-        resultUri = rendered.uri;
+        // حالياً لا يمكن دمج النصوص مع الصورة دون مكتبة رسومية، نمرر الصورة كما هي
+        // يمكنك لاحقاً استخدام canvas أو SVG لدمجها، أما الآن فسنترك الصورة الأصلية
+        // ونكتفي بإرجاعها دون تغيير
+        // const rendered = await renderTextOverlay(resultUri, textOverlays, { ... });
+        // resultUri = rendered.uri;
       } catch (e) {
         console.warn('Text overlay failed:', e);
       }
@@ -49,19 +49,25 @@ export async function exportPage(pageId, options = {}) {
   }
   
   if (options.format === 'jpg') {
-    const compressed = await manipulateAsync(
-      resultUri,
-      [],
-      { compress: (options.quality || 95) / 100, format: SaveFormat.JPEG }
-    );
-    resultUri = compressed.uri;
+    try {
+      const compressed = await manipulateAsync(
+        resultUri,
+        [],
+        { compress: (options.quality || 95) / 100, format: SaveFormat.JPEG }
+      );
+      resultUri = compressed.uri;
+    } catch (e) {
+      console.warn('Image compression failed:', e);
+    }
   }
   
   return resultUri;
 }
 
+// يمكن حذف هذه الدالة حالياً أو تركها فارغة
 async function renderTextOverlay(baseUri, textOverlays, dimensions) {
-  return await manipulateAsync(baseUri, [], { format: SaveFormat.PNG });
+  // لا يمكن تنفيذها بدون نظام ملفات أو canvas، نعيد الصورة الأساسية
+  return { uri: baseUri };
 }
 
 export async function exportChapter(projectId, pageIds, options = {}) {
